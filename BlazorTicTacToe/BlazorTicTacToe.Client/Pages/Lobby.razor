@@ -1,0 +1,76 @@
+﻿@page "/"
+@inject NavigationManager Navigator;
+@rendermode @(new InteractiveWebAssemblyRenderMode(false))
+
+<h3>Lobby</h3>
+
+<input @bind="playerName" placeholder="İsminiz"/>
+<input @bind="currentRoomName" placeholder="Oda ismi"/>
+<button @onclick="CreateRoom">Oda Oluştur</button>
+
+<h3>Odalar</h3>
+
+<ul>
+    @foreach (var room in rooms)
+    {
+        <li>@room.RoomName 
+        <button @onclick="() => JoinRoom(room.RoomId)">Katıl</button>
+        </li>
+    }
+</ul>
+
+@code {
+    private HubConnection? hubConnection;
+    private string playerName = string.Empty;
+    private string currentRoomName = string.Empty;
+    private GameRoom? currentRoom;
+    private List<GameRoom> rooms = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigator.ToAbsoluteUri("/gamehub"))
+            .Build();
+
+        hubConnection.On<List<GameRoom>>("Rooms", (roomList) =>
+        {
+            Console.WriteLine($"Odalar bulundu. Oda sayısı: {roomList.Count}");
+            rooms = roomList;
+        }
+        );
+
+        await hubConnection.StartAsync();
+    }
+
+    private async Task CreateRoom()
+    {
+        if (hubConnection is null)
+        {
+            return; 
+        }
+
+        currentRoom = await hubConnection.InvokeAsync<GameRoom>("CreateRoom",
+            currentRoomName,
+            playerName);
+    }
+
+    private async Task JoinRoom(string roomId)
+    {
+        if (hubConnection is null)
+        {
+            return;
+        }
+
+        var joinedRoom = await hubConnection.InvokeAsync<GameRoom>(
+            "JoinRoom", roomId, playerName);
+
+        if (joinedRoom is not null)
+        {
+            currentRoom = joinedRoom;
+        }
+        else
+        {
+            Console.WriteLine("Oda bulunamadı ya da dolu!");
+        }
+    }
+}
