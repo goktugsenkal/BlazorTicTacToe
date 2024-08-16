@@ -2,22 +2,49 @@
 @inject NavigationManager Navigator;
 @rendermode @(new InteractiveWebAssemblyRenderMode(false))
 
-<h3>Lobby</h3>
+<h2 style="text-align: center; font-family: 'Arial', sans-serif; color: #333;">
+    <strong>X O X</strong> Oyununa Hoş Geldin!
+</h2>
 
-<input @bind="playerName" placeholder="İsminiz"/>
-<input @bind="currentRoomName" placeholder="Oda ismi"/>
-<button @onclick="CreateRoom">Oda Oluştur</button>
+@if (currentRoom == null)
+{
+    <div style="max-width: 400px; margin: 0 auto; text-align: center;">
+        <input @bind="playerName"
+               placeholder="İsminiz"
+               style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;" />
 
-<h3>Odalar</h3>
+        <input @bind="currentRoomName"
+               placeholder="Oda ismi"
+               style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;" />
 
-<ul>
-    @foreach (var room in rooms)
-    {
-        <li>@room.RoomName 
-        <button @onclick="() => JoinRoom(room.RoomId)">Katıl</button>
-        </li>
-    }
-</ul>
+        <button @onclick="CreateRoom"
+                style="width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Oda Oluştur
+        </button>
+
+        <h3 style="margin-top: 20px; color: #333;">Odalar</h3>
+
+        <ul style="list-style: none; padding: 0;">
+            @foreach (var room in rooms)
+            {
+                <li style="margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-weight: bold;">@room.RoomName</span>
+                    <button @onclick="() => JoinRoom(room.RoomId)"
+                            style="background-color: #28a745; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">
+                        Katıl
+                    </button>
+                </li>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <CascadingValue Value="hubConnection">
+        <Room CurrentRoom="currentRoom" />
+    </CascadingValue>
+}
+
 
 @code {
     private HubConnection? hubConnection;
@@ -36,6 +63,7 @@
         {
             Console.WriteLine($"Odalar bulundu. Oda sayısı: {roomList.Count}");
             rooms = roomList;
+            StateHasChanged();
         }
         );
 
@@ -44,7 +72,7 @@
 
     private async Task CreateRoom()
     {
-        if (hubConnection is null)
+        if (hubConnection is null || hubConnection.State != HubConnectionState.Connected)
         {
             return; 
         }
@@ -61,8 +89,9 @@
             return;
         }
 
-        var joinedRoom = await hubConnection.InvokeAsync<GameRoom>(
-            "JoinRoom", roomId, playerName);
+        var joinedRoom = await hubConnection.InvokeAsync<GameRoom>("JoinRoom", 
+            roomId, 
+            playerName);
 
         if (joinedRoom is not null)
         {

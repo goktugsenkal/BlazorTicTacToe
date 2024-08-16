@@ -1,0 +1,147 @@
+﻿@if (CurrentRoom is not null)
+{
+    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <h3 style="font-family: 'Arial', sans-serif; color: #333;">Oda: @CurrentRoom.RoomName</h3>
+
+        @if (CurrentRoom.Players.Count < 2)
+        {
+            <h4 style="color: #888;">Oyuncular bekleniyor...</h4>
+        }
+
+        @if (CurrentRoom.Game.GameOver && !CurrentRoom.Game.IsDraw)
+        {
+            <h4 style="color: #d9534f;">Oyun bitti! Kazanan: @CurrentRoom.Game.Winner</h4>
+        }
+
+        @if (CurrentRoom.Game.GameOver && CurrentRoom.Game.IsDraw)
+        {
+            <h4 style="color: #f0ad4e;">Oyun bitti! Beraberlik</h4>
+        }
+
+        @if ((!CurrentRoom.Game.GameStarted || CurrentRoom.Game.GameOver)
+       && (CurrentRoom.Game.PlayerXId == myPlayerId
+       && CurrentRoom.Players.Count == 2))
+        {
+            <button @onclick="StartGame"
+                    style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+                Oyuna Başla
+            </button>
+        }
+
+        @if (CurrentRoom.Game.GameStarted && !CurrentRoom.Game.GameOver)
+        {
+            <h4 style="font-family: 'Arial', sans-serif; color: #333;">
+                @CurrentRoom.Game.CurrentPlayerSymbol hamle yapacak.
+            </h4>
+
+            <span style="display: block; margin-bottom: 10px; font-weight: bold;">
+                Oyuncular: @CurrentRoom.Players[0].Name (X), @CurrentRoom.Players[1].Name (O)
+            </span>
+
+            @if (!IsMyTurn() && !CurrentRoom.Game.GameOver)
+            {
+                <p style="color: #666;">Diğer oyuncunun sırası</p>
+            }
+
+            <table class="tic-tac-toe" style="margin: 20px auto; border-collapse: collapse;">
+                @for (int row = 0; row < 3; row++)
+                {
+                    <tr>
+                        @for (int col = 0; col < 3; col++)
+                        {
+                            var r = row;
+                            var c = col;
+                            <td @onclick="() => MakeMove(r, c)">
+                                @CurrentRoom.Game.Board[r][c]
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+}
+
+<style>
+    .tic-tac-toe {
+        border: 2px solid #000;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+        .tic-tac-toe td {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #ccc;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: #fff;
+            transition: background-color 0.3s;
+        }
+
+            .tic-tac-toe td:hover {
+                background-color: #eaeaea;
+            }
+</style>
+
+@code {
+    private string? myPlayerId;
+    [CascadingParameter]
+    public HubConnection? HubConnection { get; set; }
+    [Parameter]
+    public GameRoom? CurrentRoom { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (CurrentRoom is null || HubConnection is null || HubConnection.ConnectionId is null) 
+        {
+            return;
+        }
+
+        myPlayerId = HubConnection.ConnectionId;
+
+        HubConnection.On<Player>("PlayerJoined", player =>
+        {
+            CurrentRoom.Players.Add(player);
+            StateHasChanged();
+        });
+
+        HubConnection.On<GameRoom>("UpdateGame", serverRoom =>
+        {
+            CurrentRoom = serverRoom;
+            StateHasChanged();
+        });
+    }
+
+    async Task StartGame()
+    {
+        if (HubConnection is null || CurrentRoom is null)
+        {
+            return;
+        }
+        await HubConnection.InvokeAsync("StartGame", CurrentRoom.RoomId);
+    }
+
+    private async Task MakeMove(int row, int col)
+    {
+        if (IsMyTurn()
+            && CurrentRoom is not null
+            && CurrentRoom.Game.GameStarted
+            && !CurrentRoom.Game.GameOver
+            && HubConnection is not null)
+        {
+            await HubConnection.InvokeAsync("MakeMove", CurrentRoom.RoomId, row, col, myPlayerId);
+        }
+    }
+
+    private bool IsMyTurn()
+    {
+        if (CurrentRoom is not null)
+        {
+            return myPlayerId == CurrentRoom.Game.CurrentPlayerId;
+        }
+        return false;
+    }
+}
