@@ -1,12 +1,6 @@
-<div style="text-align: right;">
-
 [Read in English](#english)
-
-</div>
-
-
 # <a id="turkce"></a>BlazorTicTacToe
-BlazorTicTacToe, SignalR'nin Blazor ile entegrasyonunu gösteren bir demo projesidir. Bu proje, tarayıcıda oynanabilen, gerçek zamanlı, etkileşimli bir Tic-Tac-Toe oyununun nasıl inşa edileceğini göstermektedir. Proje, üç ana bölümden oluşur: sunucu, istemci ve paylaşılan kütüphaneler.
+BlazorTicTacToe, SignalR'nin Blazor ile entegrasyonunu gösteren bir demo projesidir. Bu proje, tarayıcıda oynanabilen, gerçek zamanlı, etkileşimli bir X O X oyununun nasıl inşa edileceğini göstermektedir. Proje, üç ana bölümden oluşur: sunucu, istemci ve paylaşılan kütüphaneler.
 
 ## İçindekiler
 * Proje Yapısı
