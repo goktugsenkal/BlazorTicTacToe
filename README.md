@@ -14,21 +14,21 @@ BlazorTicTacToe, SignalR'nin Blazor ile entegrasyonunu gösteren bir demo projes
 ## Proje Yapısı
 Çözüm üç projeden oluşmaktadır:
 
-1. BlazorTicTacToe:
+#### 1. BlazorTicTacToe:
 
 * Hubs: SignalR kullanarak sunucu ile istemciler arasında gerçek zamanlı iletişimi yöneten GameHub.cs dosyasını içerir.
 * Components: Uygulama genelinde kullanılan paylaşılan bileşenleri barındırır.
 * wwwroot: Statik dosyaları içerir.
 * Program.cs: Sunucu için web sunucusunu yapılandırır.
   
-2. BlazorTicTacToe.Client:
+#### 2. BlazorTicTacToe.Client:
 
 * Components: Blazor bileşenlerini içerir, Room.razor ana oyun odası kullanıcı arayüzüdür.
 * Pages: İstemci tarafındaki kullanıcı arayüzünü tanımlayan Blazor sayfaları.
 * wwwroot: İstemciye özel statik dosyalar.
 * Program.cs: Blazor WebAssembly istemci uygulamasını yapılandırır.
   
-3. BlazorTicTacToe.Shared:
+#### 3. BlazorTicTacToe.Shared:
 
 * GameRoom.cs: Oyun odası yapısını ve durumunu tanımlar.
 * Player.cs: Oyundaki oyuncu varlıklarını temsil eder.
@@ -50,29 +50,29 @@ Gereksinimler
 * Visual Studio veya Visual Studio Code
 
 ## Kurulum
-1. Depoyu klonlayın:
+#### 1. Depoyu klonlayın:
 ```
 git clone https://github.com/goktugsenkal/BlazorTicTacToe.git
 cd BlazorTicTacToe
 ```
-2. Çözümü Visual Studio veya tercih ettiğiniz editörde açın.
+#### 2. Çözümü Visual Studio veya tercih ettiğiniz editörde açın.
 
-3. NuGet paketlerini geri yükleyin:
+#### 3. NuGet paketlerini geri yükleyin:
 ```
 dotnet restore
 ```
 
 ## Uygulamanın Çalıştırılması
 ### Sunucu
-1. BlazorTicTacToe proje dizinine gidin.
-2. Sunucuyu çalıştırın:
+#### 1. BlazorTicTacToe proje dizinine gidin.
+#### 2. Sunucuyu çalıştırın:
 ```
 dotnet run
 ```
 
 ### İstemci
-1. BlazorTicTacToe.Client proje dizinine gidin.
-2. İstemciyi çalıştırın:
+#### 1. BlazorTicTacToe.Client proje dizinine gidin.
+#### 2. İstemciyi çalıştırın:
 ```
 dotnet run
 ```
@@ -102,21 +102,21 @@ BlazorTicTacToe is a demo project showcasing the integration of SignalR with Bla
 ## Project Structure
 The solution consists of three projects:
 
-1. BlazorTicTacToe:
+#### 1. BlazorTicTacToe:
 
 * Hubs: Contains the GameHub.cs file which manages real-time communication between the server and clients using SignalR.
 * Components: Houses shared components used across the application.
 * wwwroot: Contains static assets.
 * Program.cs: Configures the web host for the server.
   
-2. BlazorTicTacToe.Client:
+#### 2. BlazorTicTacToe.Client:
 
 * Components: Contains Blazor components, including Room.razor, which is the main game room UI.
 * Pages: Blazor pages that define the client-side UI.
 * wwwroot: Client-specific static assets.
 * Program.cs: Sets up the Blazor WebAssembly client application.
   
-3. BlazorTicTacToe.Shared:
+#### 3. BlazorTicTacToe.Shared:
 
 * GameRoom.cs: Defines the game room structure and state.
 * Player.cs: Represents player entities in the game.
@@ -134,27 +134,27 @@ Prerequisites
 * .NET 6 SDK
 * Visual Studio or Visual Studio Code
 ## Installation
-1. Clone the repository:
+#### 1. Clone the repository:
 ```
 git clone https://github.com/goktugsenkal/BlazorTicTacToe.git
 cd BlazorTicTacToe
 ```
-2. Open the solution in Visual Studio or your preferred editor.
+#### 2. Open the solution in Visual Studio or your preferred editor.
 
-3. Restore the NuGet packages:
+#### 3. Restore the NuGet packages:
 ```
 dotnet restore
 ```
-4. Running the Application
+#### 4. Running the Application
 ### Server
-1. Navigate to the BlazorTicTacToe project directory.
-2. Run the server:
+#### 1. Navigate to the BlazorTicTacToe project directory.
+#### 2. Run the server:
 ```
 dotnet run
 ```
 ### Client
-1. Navigate to the BlazorTicTacToe.Client project directory.
-2. Run the client:
+#### 1. Navigate to the BlazorTicTacToe.Client project directory.
+#### 2. Run the client:
 ```
 dotnet run
 ```
