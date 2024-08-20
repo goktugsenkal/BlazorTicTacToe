@@ -1,7 +1,16 @@
 ﻿@if (CurrentRoom is not null)
 {
     <div style="max-width: 600px; margin: 0 auto; text-align: center;">
-        <h3 style="font-family: 'Arial', sans-serif; color: #333;">Oda: @CurrentRoom.RoomName</h3>
+        @if (!CurrentRoom.Game.GameStarted)
+        {
+            <h3 style="font-family: 'Arial', sans-serif; color: #333;">Oda: @CurrentRoom.RoomName</h3>
+            <span>
+                <h4>Oyuncular:</h4> @foreach (var player in CurrentRoom.Players)
+                {
+                    <h4>- @player.Name</h4>
+                }
+            </span>
+        }
 
         @if (CurrentRoom.Players.Count < 2)
         {
