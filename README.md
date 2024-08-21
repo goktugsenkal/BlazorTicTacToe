@@ -2,7 +2,7 @@
 [Read in English](#english) <br/><br/>
 BlazorTicTacToe, SignalR'nin Blazor ile entegrasyonunu gösteren bir demo projesidir. Bu proje, tarayıcıda oynanabilen, gerçek zamanlı, etkileşimli bir X O X oyununun nasıl inşa edileceğini göstermektedir. Proje, üç ana bölümden oluşur: sunucu, istemci ve paylaşılan kütüphaneler.
 
-## İçindekiler
+### İçindekiler
 * Proje Yapısı
 * Özellikler
 * Kullanılan Teknolojiler
@@ -62,21 +62,15 @@ cd BlazorTicTacToe
 dotnet restore
 ```
 
-#### 4. Uygulamanın Çalıştırılması
-#### ..1. BlazorTicTacToe proje dizinine gidin.
-#### 2. Sunucuyu çalıştırın:
+## Uygulamanın Çalıştırılması
+#### 1. BlazorTicTacToe/BlazorTicTacToe/BlazorTicTacToe dizinine gidin.
+###### İlk dizin github deposunun dosyası, 2. dizin çözüm'ün(solution) kendisi, 3. dizin ise sunucu projesidir.
+#### 2. Projeyi komple ayağa kaldırmak için şu komutu çalıştırın: 
 ```
 dotnet run
 ```
 
-### İstemci
-#### 1. BlazorTicTacToe.Client proje dizinine gidin.
-#### 2. İstemciyi çalıştırın:
-```
-dotnet run
-```
-
-#### 5. Uygulamaya Erişim
+## Uygulamaya Erişim
 * Tarayıcınızı açın ve http://localhost:<port> adresine gidin (burada <port>, sunucunun çalıştığı port numarasıdır).
 * Birden fazla tarayıcı sekmesi açarak çok oyunculu deneyimi test edebilirsiniz.
 * Uzaktaki istemcilerle bağlantı kurmak için Microsoft'un port yönlendirme özelliğini kullanabilirsiniz.
@@ -122,18 +116,22 @@ The solution consists of three projects:
 * GameRoom.cs: Defines the game room structure and state.
 * Player.cs: Represents player entities in the game.
 * TicTacToeGame.cs: Contains the logic for managing the Tic-Tac-Toe game, including player turns and game state.
+
 ## Features
 * Real-Time Communication: Utilizes SignalR to enable real-time, bi-directional communication between clients and the server.
 * Blazor Integration: Demonstrates the use of Blazor for building dynamic, interactive web UIs.
 * Game Logic: Implements the Tic-Tac-Toe game logic with multiple players.
+  
 ## Technologies Used
 * Blazor: A framework for building interactive web UIs with C#.
 * SignalR: A library for adding real-time web functionality to applications.
 * .NET Core: The platform on which the server is built.
+  
 ## Getting Started
 Prerequisites
 * .NET 6 SDK
 * Visual Studio or Visual Studio Code
+  
 ## Installation
 #### 1. Clone the repository:
 ```
@@ -146,23 +144,19 @@ cd BlazorTicTacToe
 ```
 dotnet restore
 ```
-#### 4. Running the Application
-### Server
-#### 1. Navigate to the BlazorTicTacToe project directory.
-#### 2. Run the server:
+## Running the Application
+#### 1. Navigate to the BlazorTicTacToe/BlazorTicTacToe/BlazorTicTacToe directory.
+###### The first directory is the GitHub repository folder, the second is the solution itself, and the third is the server project.
+#### 2. Run the entire project with the following command: 
 ```
 dotnet run
 ```
-### Client
-#### 1. Navigate to the BlazorTicTacToe.Client project directory.
-#### 2. Run the client:
-```
-dotnet run
-```
-#### 5. Accessing the Application
+
+## Accessing the Application
 * Open your browser and navigate to http://localhost:<port> (where <port> is the port number on which the server is running).
 * You can test multiplayer by opening multiple browser tabs.
 * Use Microsoft's port forwarding feature to connect with remote clients.
+  
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
