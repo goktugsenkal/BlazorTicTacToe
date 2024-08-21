@@ -8,6 +8,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddSignalR();
+builder.Services.AddHttpClient();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -33,5 +35,7 @@ app.MapHub<GameHub>("/gamehub");
 app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(BlazorTicTacToe.Client._Imports).Assembly);
+
+app.MapControllers();
 
 app.Run();

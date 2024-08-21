@@ -1,5 +1,7 @@
 ﻿@page "/"
+@using static System.Net.WebRequestMethods
 @inject NavigationManager Navigator;
+@inject HttpClient Http;
 @rendermode @(new InteractiveWebAssemblyRenderMode(false))
 
 <h2 style="text-align: center; font-family: 'Arial', sans-serif; color: #333;">
