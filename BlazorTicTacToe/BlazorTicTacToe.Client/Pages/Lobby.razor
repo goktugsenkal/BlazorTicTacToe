@@ -112,4 +112,44 @@ else
             Console.WriteLine("Oda bulunamadı ya da dolu!");
         }
     }
+
+
+    //
+    // FILE UPLOAD FUNCTIONALITY
+    //
+
+    private IBrowserFile selectedFile;
+    private string UploadMessage;
+
+    private void OnFileSelected(InputFileChangeEventArgs e)
+    {
+        selectedFile = e.File;
+    }
+
+    private async Task SingleUpload()
+    {
+        if (selectedFile is null)
+        {
+            UploadMessage = "Henüz dosya seçilmedi.";
+            return;
+        }
+
+        MemoryStream memoryStream = new();
+        await selectedFile.OpenReadStream().CopyToAsync(memoryStream);
+        var bytes = memoryStream.ToArray();
+
+        var content = new MultipartFormDataContent();
+        content.Add(new ByteArrayContent(bytes), "file", selectedFile.Name);
+
+        var response = await Http.PostAsync("api/files/upload", content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            UploadMessage = "Dosya başarıyla yüklendi.";
+        }
+        else
+        {
+            Console.WriteLine("Dosya yüklenirken hata oluştu.");
+        }
+    }
 }
