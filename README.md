@@ -63,8 +63,7 @@ dotnet restore
 ```
 
 #### 4. Uygulamanın Çalıştırılması
-### Sunucu
-#### 1. BlazorTicTacToe proje dizinine gidin.
+#### ..1. BlazorTicTacToe proje dizinine gidin.
 #### 2. Sunucuyu çalıştırın:
 ```
 dotnet run
