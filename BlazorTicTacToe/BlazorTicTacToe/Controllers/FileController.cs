@@ -13,6 +13,13 @@ namespace BlazorTicTacToe.Controllers
         {
             if (file.Length > 0)
             {
+                var uploadsDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+
+                // Uploads dosyası yoksa yarat
+                if (!Directory.Exists(uploadsDirectory))
+                {
+                    Directory.CreateDirectory(uploadsDirectory);
+                }
                 var filePath = Path.Combine("Uploads", file.FileName);
                 
                 using (var stream = new FileStream(filePath, FileMode.Create))
