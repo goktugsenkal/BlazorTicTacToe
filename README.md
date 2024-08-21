@@ -1,5 +1,5 @@
-[Read in English](#english)
 # <a id="turkce"></a>BlazorTicTacToe
+[Read in English](#english)
 BlazorTicTacToe, SignalR'nin Blazor ile entegrasyonunu gösteren bir demo projesidir. Bu proje, tarayıcıda oynanabilen, gerçek zamanlı, etkileşimli bir X O X oyununun nasıl inşa edileceğini göstermektedir. Proje, üç ana bölümden oluşur: sunucu, istemci ve paylaşılan kütüphaneler.
 
 ## İçindekiler
@@ -86,8 +86,8 @@ Katkılar memnuniyetle kabul edilir! Lütfen depoyu çatallayın ve değişiklik
 ## Lisans
 Bu proje MIT Lisansı altında lisanslanmıştır. Ayrıntılar için [LICENSE](https://opensource.org/licenses/MIT) dosyasına bakın.
 
-[Türkçe Oku](#turkce)
 # <a id="english"></a>BlazorTicTacToe
+[Türkçe Oku](#turkce)
 BlazorTicTacToe is a demo project showcasing the integration of SignalR with Blazor. This project demonstrates how to build a real-time, interactive Tic-Tac-Toe game that can be played in a browser. The project is structured into three main parts: the server, client, and shared libraries.
 
 ## Table of Contents
