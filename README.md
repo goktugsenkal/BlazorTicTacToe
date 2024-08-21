@@ -32,12 +32,12 @@ BlazorTicTacToe, SignalR'nin Blazor ile entegrasyonunu gösteren bir demo projes
 
 * GameRoom.cs: Oyun odası yapısını ve durumunu tanımlar.
 * Player.cs: Oyundaki oyuncu varlıklarını temsil eder.
-* TicTacToeGame.cs: Oyuncu sıraları ve oyun durumu dahil olmak üzere Tic-Tac-Toe oyununu yönetme mantığını içerir.
+* TicTacToeGame.cs: Oyuncu sıraları ve oyun durumu dahil olmak üzere X O X oyununu yönetme mantığını içerir.
 
 ## Özellikler
 * Gerçek Zamanlı İletişim: SignalR kullanarak istemciler ve sunucu arasında gerçek zamanlı, çift yönlü iletişim sağlar.
 * Blazor Entegrasyonu: Blazor'un dinamik, etkileşimli web kullanıcı arayüzleri oluşturma yeteneklerini gösterir.
-* Oyun Mantığı: Birden fazla oyuncu ile Tic-Tac-Toe oyun mantığını uygular.
+* Oyun Mantığı: Birden fazla oyuncu ile X O X oyun mantığını uygular.
 
 ## Kullanılan Teknolojiler
 * Blazor: C# ile etkileşimli web kullanıcı arayüzleri oluşturmak için bir çerçeve.
@@ -79,6 +79,8 @@ dotnet run
 
 ## Uygulamaya Erişim
 * Tarayıcınızı açın ve http://localhost:<port> adresine gidin (burada <port>, sunucunun çalıştığı port numarasıdır).
+* Birden fazla tarayıcı sekmesi açarak çok oyunculu deneyimi test edebilirsiniz.
+* Uzaktaki istemcilerle bağlantı kurmak için Microsoft'un port yönlendirme özelliğini kullanabilirsiniz.
 
 ## Katkıda Bulunma
 Katkılar memnuniyetle kabul edilir! Lütfen depoyu çatallayın ve değişikliklerinizi içeren bir çekme isteği gönderin.
@@ -158,8 +160,10 @@ dotnet run
 ```
 dotnet run
 ```
-5. Accessing the Application
+#### 5. Accessing the Application
 * Open your browser and navigate to http://localhost:<port> (where <port> is the port number on which the server is running).
+* You can test multiplayer by opening multiple browser tabs.
+* Use Microsoft's port forwarding feature to connect with remote clients.
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
