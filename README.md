@@ -62,7 +62,7 @@ cd BlazorTicTacToe
 dotnet restore
 ```
 
-## Uygulamanın Çalıştırılması
+#### 4. Uygulamanın Çalıştırılması
 ### Sunucu
 #### 1. BlazorTicTacToe proje dizinine gidin.
 #### 2. Sunucuyu çalıştırın:
@@ -77,7 +77,7 @@ dotnet run
 dotnet run
 ```
 
-## Uygulamaya Erişim
+#### 5. Uygulamaya Erişim
 * Tarayıcınızı açın ve http://localhost:<port> adresine gidin (burada <port>, sunucunun çalıştığı port numarasıdır).
 * Birden fazla tarayıcı sekmesi açarak çok oyunculu deneyimi test edebilirsiniz.
 * Uzaktaki istemcilerle bağlantı kurmak için Microsoft'un port yönlendirme özelliğini kullanabilirsiniz.
