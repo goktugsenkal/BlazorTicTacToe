@@ -125,6 +125,12 @@ else
 
     private void OnFileSelected(InputFileChangeEventArgs e)
     {
+        if (e.File.Size >= 2048000)
+        {
+            UploadMessage = "2 MegaByte'dan büyük dosyalar yüklenemez!";
+            return;
+        }
+
         selectedFile = e.File;
     }
 
