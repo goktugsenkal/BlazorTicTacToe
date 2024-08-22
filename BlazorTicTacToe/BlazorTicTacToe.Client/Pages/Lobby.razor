@@ -137,7 +137,7 @@ else
         }
 
         MemoryStream memoryStream = new();
-        await selectedFile.OpenReadStream().CopyToAsync(memoryStream);
+        await selectedFile.OpenReadStream(2048000).CopyToAsync(memoryStream);
         var bytes = memoryStream.ToArray();
 
         var content = new MultipartFormDataContent();
