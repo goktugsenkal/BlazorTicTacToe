@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorTicTacToe.Controllers
 {
@@ -21,7 +20,7 @@ namespace BlazorTicTacToe.Controllers
                     Directory.CreateDirectory(uploadsDirectory);
                 }
                 var filePath = Path.Combine("Uploads", file.FileName);
-                
+
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
