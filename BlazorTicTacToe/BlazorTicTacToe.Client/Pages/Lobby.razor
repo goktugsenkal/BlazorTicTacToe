@@ -24,30 +24,35 @@
             Oda Oluştur
         </button>
 
-        <h3 style="margin-top: 20px; color: #333;">Odalar</h3>
+        <div class="text-center bg-info p-3 m-3 border rounded">
+            <h3 class="text-light">Odalar</h3>
 
-        <ul style="list-style: none; padding: 0;">
-            @foreach (var room in rooms)
-            {
-                <li style="margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; display: flex; align-items: center; justify-content: space-between;">
-                    <span style="font-weight: bold;">@room.RoomName</span>
-                    <button @onclick="() => JoinRoom(room.RoomId)"
-                            style="background-color: #28a745; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">
-                        Katıl
-                    </button>
-                </li>
-            }
-        </ul>
+            <ul style="list-style: none; padding: 0;">
+                @foreach (var room in rooms)
+                {
+                    <li style="margin-bottom: 10px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-weight: bold;">@room.RoomName</span>
+                        <button @onclick="() => JoinRoom(room.RoomId)"
+                                style="background-color: #28a745; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">
+                            Katıl
+                        </button>
+                    </li>
+                }
+            </ul>
+        </div>
+
     </div>
 
-    <div class="text-center">
+    <div class="text-center bg-info p-3 m-3 border rounded">
+        <h3 class="text-light">Dosya yükleme geliştirme</h3>
+
         <InputFile OnChange="OnFileSelected" />
         <button onclick="@SingleUpload"
                 style="background-color: #28a745; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">
             Dosyayı Yükle
         </button>
 
-        <h3>@UploadMessage</h3>
+        <h6 class="p-3 m-3 text-light">@UploadMessage</h6>
     </div>
 }
 else
