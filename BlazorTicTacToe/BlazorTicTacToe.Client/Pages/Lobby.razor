@@ -133,9 +133,11 @@ else
         if (e.File.Size >= 2048000)
         {
             UploadMessage = "2 Megabyte'dan büyük dosyalar yüklenemez!";
+            StateHasChanged();
             return;
         }
 
+        UploadMessage = string.Empty;
         selectedFile = e.File;
     }
 
@@ -162,7 +164,7 @@ else
         }
         else
         {
-            Console.WriteLine("Dosya yüklenirken hata oluştu.");
+            UploadMessage = "Dosya yüklenemedi.";
         }
     }
 }
