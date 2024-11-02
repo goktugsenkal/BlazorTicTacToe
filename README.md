@@ -71,7 +71,8 @@ dotnet run
 ```
 
 ## Uygulamaya Erişim
-* Tarayıcınızı açın ve http://localhost:<port> adresine gidin (burada <port>, sunucunun çalıştığı port numarasıdır).
+* Tarayıcınızı açın ve http://localhost:{port} adresine gidin (burada {port}, sunucunun çalıştığı port numarasıdır).
+*   Örnek: https://localhost:5001
 * Birden fazla tarayıcı sekmesi açarak çok oyunculu deneyimi test edebilirsiniz.
 * Uzaktaki istemcilerle bağlantı kurmak için Microsoft'un port yönlendirme özelliğini kullanabilirsiniz.
 
@@ -153,7 +154,8 @@ dotnet run
 ```
 
 ## Accessing the Application
-* Open your browser and navigate to http://localhost:<port> (where <port> is the port number on which the server is running).
+* Open your browser and navigate to http://localhost:{port} (where {port} is the port number on which the server is running).
+*   Example: https://localhost:5001
 * You can test multiplayer by opening multiple browser tabs.
 * Use Microsoft's port forwarding feature to connect with remote clients.
   
